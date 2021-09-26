@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <h2>Shortcuts</h2>
+
+    <label>Show Emoji Picker
+        <input class="shortcut" id="shortcut-toggle" type="text" value="">
+        <input id="shortcut-toggle-set" type="button" value="Set">
+        <input id="shortcut-toggle-cancel" type="button" value="Cancel" disabled>
+    </label>
+
+    <BR><BR>
+    <input id="save" type="button" value="Save">
+    <script src="./settings-renderer.js"></script>
+  </body>
+</html>

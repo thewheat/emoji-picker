@@ -1,0 +1,33 @@
+{
+  "name": "emoji-picker",
+  "version": "1.0.0",
+  "description": "An emoji picker",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist-all": "electron-builder -mwl"
+  },
+  "keywords": [
+    "emoji"
+  ],
+  "author": "Timothy Lim",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^15.0.0",
+    "electron-builder": "^22.11.7"
+  },
+  "build": {
+    "appId": "org.thewheatfield.electron.emoji",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "category": "Utility"
+    }
+  },
+  "dependencies": {
+    "electron-store": "^8.0.1"
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Picker</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <BR>
+    <label class='search'>Search: <input id="search" type="text"></label>
+    <div id="toast" class="hide"></div>
+
+    <table id="emojis">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
+
+    <footer>
+        Source: <a href="http://www.unicode.org/emoji/charts/full-emoji-list.html">http://www.unicode.org/emoji/charts/full-emoji-list.html</a>
+    </footer>
+    <input id="copy" type="text"></label>
+
+    <div>
+      <!--
+              <h3>Extraction code</h3>
+              <pre>
+      let bighead = null;
+      let midhead = null;
+      let emojis = [];
+      
+      document.querySelectorAll("TR").forEach(tr => {
+          th = tr.querySelector("TH"); 
+          if(th) {
+              if (th.classList.contains("bighead"))
+                  bighead = th.innerText;
+              else if (th.classList.contains("mediumhead"))
+                  midhead = th.innerText;
+          }
+          tds = tr.querySelectorAll("TD");
+          if(tds[3]) {
+              let code = tds[1].innerText.split(" ");
+              let emoji = tds[2].innerText;
+              let name = tds[3].innerText;
+      
+              console.log(`${bighead} - ${midhead} - ${emoji} - ${name} - ${code}`);
+              emojis.push({
+                  category: bighead,
+                  subcategory: midhead,
+                  name: name,
+                  emoji: emoji,
+                  code: code
+              })
+          }
+      })
+      
+      console.log(JSON.stringify(emojis));
+              </pre>
+      
+              <h3>Emojis that need custom font to display properly</h3>
+              <span>smiling face, frowning face, skull and crossbones, heart exclamation, red heart, shamrock, hot springs, airplane, sun, cloud, umbrella, snowflake, snowman, comet, spade suit, heart suit, diamond suit, club suit, chess pawn, telephone, keyboard, envelope, pencil, black nib, scissors, hammer and pick, crossed swords, gear, balance scale, alembic, coffin, funeral urn, warning, radioactive, biohazard, arrow, up-right arrow, right arrow, down-right arrow, down arrow, down-left arrow, left arrow, up-left arrow, up-down arrow, left-right arrow, right arrow curving left, left arrow curving right, right arrow curving up, right arrow curving down, atom symbol, star of David, wheel of dharma, yin yang, latin cross, orthodox cross, star and crescent, peace symbol, play button, reverse button, eject button, female sign, male sign, multiply, infinity, double exclamation mark, exclamation question mark, wavy dash, medical symbol, recycling symbol, fleur-de-lis, check box with check, part alternation mark, eight-spoked asterisk, eight-pointed star, sparkle, copyright, registered, trade mark, A button (blood type), B button (blood type), information, circled M, O button (blood type), P button, Japanese “service charge” button, Japanese “monthly amount” button, Japanese “congratulations” button, Japanese “secret” button, black medium square, white medium square, black medium-small square, white medium-small square, black small square, white small square</span>
+              -->
+          </div> 
+          <script src="./index-renderer.js"></script>
+
+  </body>
+</html>

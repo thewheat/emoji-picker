@@ -1,0 +1,82 @@
+body {
+    font-family: sans-serif;
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+}	
+#search {
+    max-width: 90%;
+}
+.search, #search {
+    font-size: 1.4em;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0.5em auto;
+    text-align: center;
+}
+
+tr,th,td {
+    border: 1px solid lightgray;
+    padding: 3px 5px;
+}
+
+tr.active {
+    border: 2px solid blue;
+}
+
+th {
+    top: 0; /* Don't forget this, required for the stickiness */
+    position: sticky;
+    background-color: lightgray;
+    border: 1px solid darkgray;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+td.empty {
+    background-color: salmon;
+    font-style: italic;
+}
+
+td.emoji {
+    font-size: 2em;
+    padding: 0.1em 0;
+    text-align: center;;
+    font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+td code {
+    background-color: lightgray;
+    padding: 2px;
+    border-radius: 3px;
+    margin: 0.2em;
+    display: inline-block;
+}
+
+input#copy{
+    display: inline;
+    opacity: 0;
+    width: 1em;
+}
+
+#toast {
+    position: fixed;
+    display: none;
+    font-size: 2em;
+    padding: 0.5em;
+    border-radius: 1em;
+    top: 2em;
+    right: 2em;
+    background-color: rgb(200, 255, 189);
+    z-index: 1; /* so it is above sticky header */
+}
+
+#toast.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
