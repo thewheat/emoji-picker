@@ -9,7 +9,3 @@ contextBridge.exposeInMainWorld('picker', {
     ipcRenderer.send('picker-showSettings');
   }
 })
-
-ipcRenderer.on('clear', (event, args) => {
-  const search = document.querySelector("#search");
-});

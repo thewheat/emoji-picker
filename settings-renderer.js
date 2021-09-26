@@ -1,5 +1,9 @@
 const saveBtn = document.querySelector("#save")
 const shortcutToggleText = document.querySelector("#shortcut-toggle")
+const shortcutToggleSetBtn = document.querySelector("#shortcut-toggle-set");
+const shortcutToggleCancelBtn = document.querySelector("#shortcut-toggle-cancel");
+let listenForShortcut = '';
+
 
 function getSavedSettings(){
     return window.settings.get();
@@ -32,7 +36,6 @@ function populateCurrentSettings(){
             console.error(`Cannot populate setting: ${key}`)
         }
     })
-
 }
 
 function buildShortcutString(keyEvent){
@@ -44,39 +47,54 @@ function buildShortcutString(keyEvent){
     if(keyEvent.ctrlKey) parts.push("Ctrl");
     if(keyEvent.shiftKey) parts.push("Shift");
 
-    if(!["Meta", "Shift", "Control", "Alt"].includes(keyEvent.key)) parts.push(keyEvent.key.toUpperCase());
-
+    parts.push(String.fromCharCode(keyEvent.keyCode));
+    //parts.push(keyEvent.key.toUpperCase());
     return parts.join("+");
 }
 
-populateCurrentSettings();
 
-let listenForShortcut = '';
-
-document.querySelector("BODY").addEventListener('keydown', function(e){
-    if(!listenForShortcut) return;
-
-    document.querySelector("#shortcut-toggle").value = buildShortcutString(e);
-});
-
-
-const shortcutToggleSetBtn = document.querySelector("#shortcut-toggle-set");
-const shortcutToggleCancelBtn = document.querySelector("#shortcut-toggle-cancel");
-
-shortcutToggleSetBtn.addEventListener('click', () => {
+function enableShortcutListening(){
     listenForShortcut = 'shortcut-toggle';
     shortcutToggleCancelBtn.removeAttribute("disabled");
-});
+}
 
-shortcutToggleCancelBtn.addEventListener('click', () => {
+function disableShortcutListening(){
     listenForShortcut = '';
     shortcutToggleCancelBtn.setAttribute("disabled", "disabled");
-});
+}
 
-saveBtn.addEventListener('click', () => {
-    listenForShortcut = '';
-    shortcutToggleCancelBtn.setAttribute("disabled", "disabled");
+function initShortcuts(){
+    document.querySelector("BODY").addEventListener('keydown', function(e){
+        if(!listenForShortcut) return;
+        if(["Meta", "Shift", "Control", "Alt"].includes(e.key)) return;
 
-    let settings = getNewSettings();
-    saveSettings(settings);
-});
+        document.querySelector("#shortcut-toggle").value = buildShortcutString(e);
+        disableShortcutListening();
+    });
+
+    shortcutToggleSetBtn.addEventListener('click', () => {
+        enableShortcutListening();
+    });
+
+    shortcutToggleCancelBtn.addEventListener('click', () => {
+        disableShortcutListening();
+    });
+}
+
+function initSaveSettings(){
+    saveBtn.addEventListener('click', () => {
+        listenForShortcut = '';
+        shortcutToggleCancelBtn.setAttribute("disabled", "disabled");
+
+        let settings = getNewSettings();
+        saveSettings(settings);
+    });
+}
+
+function init(){
+    populateCurrentSettings();
+    initSaveSettings();
+    initShortcuts();
+}
+
+init();

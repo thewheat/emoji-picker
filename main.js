@@ -121,17 +121,17 @@ app.on('will-quit', () => {
 
 function registerShortcuts(){
   let settings = getSavedSettings();
-  if (settings['shortcut-toggle']) {
-    globalShortcut.register(settings['shortcut-toggle'], () => {
-      togglePicker(true);
-    })
+  try{
+    if (settings['shortcut-toggle']) {
+      globalShortcut.register(settings['shortcut-toggle'], () => {
+        togglePicker(true);
+      })
+    }
+    return true;
+  }catch(err){
+    console.log("err", err);
+    return false;
   }
-  // globalShortcut.register('Super+Ctrl+A', () => {
-  //   togglePicker(false);
-  // })
-  globalShortcut.register('Super+Alt+Ctrl+Shift+A', () => {
-    togglePicker(false);
-  })
 }
 
 function unregisterShortcuts(){
@@ -140,7 +140,7 @@ function unregisterShortcuts(){
 
 function refreshShortcuts(){
   unregisterShortcuts();
-  registerShortcuts();
+  return registerShortcuts();
 }
 
 function getSavedSettings(){
@@ -172,17 +172,11 @@ ipcMain.on('settings-set-and-refresh-shortcuts', (event, settings) => {
   refreshShortcuts();
 });
 
-ipcMain.on('refresh-shortcuts', (event) => {
-  refreshShortcuts();
-});
-
-
 function togglePicker(show){
   if (currentWindow == null) return;
 
   if(show) {
     currentWindow.show();
-    currentWindow.webContents.send('clear');
   }
   else
     currentWindow.hide();
