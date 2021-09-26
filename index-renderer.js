@@ -10,6 +10,8 @@ const tbl = document.querySelector("#emojis");
 const tbl_body = tbl.querySelector("tbody");
 const searchInput = document.querySelector("#search");
 const body = document.querySelector("BODY");
+const instructions = document.querySelector("#instructions");
+const instructionsToggle = document.querySelectorAll(".toggle-instructions");
 
 const DEFAULT_EMOJI_INDEX = 1;
 let emojiRowSelected = DEFAULT_EMOJI_INDEX;
@@ -19,9 +21,15 @@ function populateTableHeader(){
     tbl.querySelector("thead").appendChild(createHeaderRow(EMOJI_KEYS));
 }
 
+function toggleInstructions(){
+    instructions.classList.toggle("show");
+}
 function init(){
     populateTableHeader();
     
+    instructionsToggle.forEach(el => {
+        el.onclick = toggleInstructions;
+    })
     searchInput.onkeyup = onSearch;
     searchInput.onkeydown = onSearchKeydown;
     body.onkeydown = onGlobalKeydown;

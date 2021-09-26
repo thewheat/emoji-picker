@@ -61,6 +61,18 @@ input#copy{
     width: 1em;
 }
 
+.float-right {
+    float: right;;
+}
+
+#instructions {
+    background-color:rgb(200, 255, 189);
+    padding: 0.2em 1em;
+    width: 20em;
+    text-align: left;
+    margin: 0.5em auto;
+}
+
 #toast {
     position: fixed;
     display: none;
@@ -73,8 +85,8 @@ input#copy{
     z-index: 1; /* so it is above sticky header */
 }
 
-#toast.show {
-    display: block;
+.show {
+    display: block !important;
 }
 
 .hide {
