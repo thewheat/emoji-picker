@@ -20,6 +20,7 @@ function createWindow () {
     return;
   }
   const win = new BrowserWindow({
+    icon: getAppIcon(),
     width: 800,
     height: 600,
     webPreferences: {
@@ -44,8 +45,13 @@ function createSettingsWindow () {
     return;
   }
   const win = new BrowserWindow({
+    icon: getAppIcon(),
+    modal: true,
+    parent: currentWindow,
+    minWidth: 100,
+    minHeight: 100,
     width: 400,
-    height: 200,
+    height: 300,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -61,26 +67,31 @@ function createSettingsWindow () {
   })
 }
 
-setupDockIcon();
-
 app.whenReady().then(() => {
   getSavedSettings();
   createWindow()
-  createAppIcon()
+  createTrayIcon()
+  createDockIcon();
+
   registerShortcuts()
   app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    createWindow()
   })
 })
 
-function setupDockIcon(){
+function getAppIcon(){
   const iconName = 'assets/appIcon.png'
-  const iconPath = path.join(__dirname, iconName)
-  app.dock.setIcon(iconPath);
+  return path.join(__dirname, iconName)
+}
+
+function createDockIcon(){
+  if(!app.dock) return;
+
+  app.dock.setIcon(getAppIcon());
   //app.dock.hide(); 
 }
 
-function createAppIcon() {
+function createTrayIcon() {
   const iconName = 'assets/trayIcon.png'
   const iconPath = path.join(__dirname, iconName)
   appIcon = new Tray(iconPath)
