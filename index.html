@@ -30,7 +30,8 @@
     </table>
 
     <footer>
-        <p>Source: <a href="http://www.unicode.org/emoji/charts/full-emoji-list.html">http://www.unicode.org/emoji/charts/full-emoji-list.html</a></p>
+        <p><a href="https://www.unicode.org/emoji/charts/emoji-list.html">Emoji Source</a> | <a href="https://github.com/iamcal/emoji-data">Slack shortcodes source</a> (via <a href="https://emojipedia.org/slack/https://emojipedia.org/slack/">Emojipedia</a>)</p>
+
         <p>Emojis in app icon thanks to <a href="https://github.com/twitter/twemoji/">Twemoji</a> by <a href="https://twitter.com">Twitter</a> and is <a href="https://creativecommons.org/licenses/by/4.0/">licensed under CC BY 4.0</a></p>
     </footer>
     <input id="copy" type="text"></label>
@@ -54,16 +55,18 @@
           tds = tr.querySelectorAll("TD");
           if(tds[3]) {
               let code = tds[1].innerText.split(" ");
-              let emoji = tds[2].innerText;
+              let emoji = tds[2].querySelector("img").getAttribute("alt");
               let name = tds[3].innerText;
+              let keywords = tds[4].innerText;
       
-              console.log(`${bighead} - ${midhead} - ${emoji} - ${name} - ${code}`);
+              console.log(`${bighead} - ${midhead} - ${emoji} - ${name} - ${code} - ${keywords}`);
               emojis.push({
                   category: bighead,
                   subcategory: midhead,
                   name: name,
                   emoji: emoji,
-                  code: code
+                  code: code,
+                  keywords: keywords
               })
           }
       })
