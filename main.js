@@ -178,6 +178,10 @@ ipcMain.on('settings-set', (event, settings) => {
   saveSettings(settings);
 });
 
+ipcMain.on('settings-close', (event, settings) => {
+  settingsWindow.close();
+});
+
 ipcMain.on('settings-set-and-refresh-shortcuts', (event, settings) => {
   saveSettings(settings);
   refreshShortcuts();

@@ -1,4 +1,5 @@
 const saveBtn = document.querySelector("#save")
+const closeBtn = document.querySelector("#cancel")
 const shortcutToggleText = document.querySelector("#shortcut-toggle")
 const shortcutToggleSetBtn = document.querySelector("#shortcut-toggle-set");
 const shortcutToggleCancelBtn = document.querySelector("#shortcut-toggle-cancel");
@@ -88,6 +89,9 @@ function initSaveSettings(){
 
         let settings = getNewSettings();
         saveSettings(settings);
+    });
+    closeBtn.addEventListener('click', () => {
+        window.settings.close();
     });
 }
 
